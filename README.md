@@ -45,7 +45,7 @@ cd build
 cmake ..
 make
 ```
-###**on debian and possibly others, if running into compile problems**</br>
+### **on debian and possibly others, if running into compile problems**</br></br>
 Download zip of project from: https://github.com/ziggi/FCNPC</br>
 Extract zip</br>
 set extracted folder permissions chmod 777</br>
