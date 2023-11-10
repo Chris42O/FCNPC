@@ -45,30 +45,29 @@ cd build
 cmake ..
 make
 ```
-under debian and possibly others:
-How to build FCNPC 
-Download zip of project from: https://github.com/ziggi/FCNPC
-Extract zip
-set extracted folder permissions chmod 777
-download subhook zip: https://github.com/Zeex/subhook
-extract zip
-set extracted folder permissions chmod 777
+on debian and possibly others, if running into compile problems</br>
+Download zip of project from: https://github.com/ziggi/FCNPC</br>
+Extract zip</br>
+set extracted folder permissions chmod 777</br>
+download subhook zip: https://github.com/Zeex/subhook</br>
+extract zip</br>
+set extracted folder permissions chmod 777</br>
 
-copy contents of subhook-master too FCNPC-master/lib/subhook
+copy contents of subhook-master too FCNPC-master/lib/subhook</br>
 
-open the file FCNPC-master/CmakeLists.txt
-under # Definitions
+open the file FCNPC-master/CmakeLists.txt</br>
+under # Definitions</br>
 ```c
 # Definintions
 set (INCLUDE_VERSION 207)
 ```
-add the line:
+add the line:</br>
 ```c
 # Definintions
 find_package(Bullet REQUIRED)
 set (INCLUDE_VERSION 207)
 ```
-Delete these lines from the file
+Delete these lines from the file</br>
 ```c
 # Bullet
 set (BUILD_CPU_DEMOS OFF CACHE BOOL "Build original Bullet CPU examples")
@@ -90,7 +89,7 @@ find_path(BULLET_INCLUDE_DIRS NAMES btBulletCollisionCommon.h
 
 # include (FindBullet)
 ```
-replace these lines:
+replace these lines:</br>
 ```
 target_link_libraries (${PROJECT_NAME}
     subhook
@@ -101,12 +100,16 @@ target_link_libraries (${PROJECT_NAME}
     LinearMath
     Bullet3Common
     )
-```with this:```
+```
+with this:</br>
+```
 target_link_libraries (${PROJECT_NAME}
     subhook
     ${BULLET_INCLUDE_DIR}
     )
-```and this:```
+```
+and this:</br>
+```
 target_link_libraries (${PROJECT_NAME}-DL
     subhook
     BulletInverseDynamics
@@ -116,18 +119,20 @@ target_link_libraries (${PROJECT_NAME}-DL
     LinearMath
     Bullet3Common
     )
-```with this```
+```
+with this:</br>
+```
 target_link_libraries (${PROJECT_NAME}-DL
     subhook
     ${BULLET_INCLUDE_DIR}
     )
 ```
-save file.
+save file.</br>
 
-navigate too FCNPC-master in the terminal:
-cmake -B build
-cd build
-make
+navigate too FCNPC-master in the terminal:</br>
+cmake -B build</br>
+cd build</br>
+make</br>
 
 Special thanks
 --------------
