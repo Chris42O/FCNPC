@@ -45,7 +45,7 @@ cd build
 cmake ..
 make
 ```
-**on debian and possibly others, if running into compile problems**</br>
+###**on debian and possibly others, if running into compile problems**</br>
 Download zip of project from: https://github.com/ziggi/FCNPC</br>
 Extract zip</br>
 set extracted folder permissions chmod 777</br>
@@ -90,7 +90,7 @@ find_path(BULLET_INCLUDE_DIRS NAMES btBulletCollisionCommon.h
 # include (FindBullet)
 ```
 replace these lines:</br>
-```
+```c
 target_link_libraries (${PROJECT_NAME}
     subhook
     BulletInverseDynamics
@@ -102,14 +102,14 @@ target_link_libraries (${PROJECT_NAME}
     )
 ```
 with this:</br>
-```
+```c
 target_link_libraries (${PROJECT_NAME}
     subhook
     ${BULLET_INCLUDE_DIR}
     )
 ```
 and this:</br>
-```
+```c
 target_link_libraries (${PROJECT_NAME}-DL
     subhook
     BulletInverseDynamics
@@ -121,7 +121,7 @@ target_link_libraries (${PROJECT_NAME}-DL
     )
 ```
 with this:</br>
-```
+```c
 target_link_libraries (${PROJECT_NAME}-DL
     subhook
     ${BULLET_INCLUDE_DIR}
