@@ -132,7 +132,7 @@ save file.</br>
 navigate too FCNPC-master in the terminal:</br>
 cmake -B build</br>
 cd build</br>
-make</br>==============================
+make</br>============================== 
 
 Special thanks
 --------------
