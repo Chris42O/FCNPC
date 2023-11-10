@@ -45,6 +45,89 @@ cd build
 cmake ..
 make
 ```
+under debian and possibly others:
+How to build FCNPC 
+Download zip of project from: https://github.com/ziggi/FCNPC
+Extract zip
+set extracted folder permissions chmod 777
+download subhook zip: https://github.com/Zeex/subhook
+extract zip
+set extracted folder permissions chmod 777
+
+copy contents of subhook-master too FCNPC-master/lib/subhook
+
+open the file FCNPC-master/CmakeLists.txt
+under # Definitions
+```c
+# Definintions
+set (INCLUDE_VERSION 207)
+```
+add the line:
+```c
+# Definintions
+find_package(Bullet REQUIRED)
+set (INCLUDE_VERSION 207)
+```
+Delete these lines from the file
+```c
+# Bullet
+set (BUILD_CPU_DEMOS OFF CACHE BOOL "Build original Bullet CPU examples")
+set (BUILD_BULLET2_DEMOS OFF CACHE BOOL "Set when you want to build the Bullet 2 demos")
+set (BUILD_EXTRAS OFF CACHE BOOL "Set when you want to build the extras")
+set (BUILD_OPENGL3_DEMOS OFF CACHE BOOL "Set when you want to build the OpenGL3+ demos")
+set (BUILD_UNIT_TESTS OFF CACHE BOOL "Build Unit Tests")
+add_subdirectory (
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/bullet3
+)
+
+set (BULLET_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/lib/bullet3")
+find_path(BULLET_INCLUDE_DIRS NAMES btBulletCollisionCommon.h
+  HINTS
+    ${BULLET_ROOT}/include
+    ${BULLET_ROOT}/src
+  PATH_SUFFIXES bullet
+)
+
+# include (FindBullet)
+```
+replace these lines:
+```
+target_link_libraries (${PROJECT_NAME}
+    subhook
+    BulletInverseDynamics
+    BulletSoftBody
+    BulletDynamics
+    BulletCollision
+    LinearMath
+    Bullet3Common
+    )
+```with this:```
+target_link_libraries (${PROJECT_NAME}
+    subhook
+    ${BULLET_INCLUDE_DIR}
+    )
+```and this:```
+target_link_libraries (${PROJECT_NAME}-DL
+    subhook
+    BulletInverseDynamics
+    BulletSoftBody
+    BulletDynamics
+    BulletCollision
+    LinearMath
+    Bullet3Common
+    )
+```with this```
+target_link_libraries (${PROJECT_NAME}-DL
+    subhook
+    ${BULLET_INCLUDE_DIR}
+    )
+```
+save file.
+
+navigate too FCNPC-master in the terminal:
+cmake -B build
+cd build
+make
 
 Special thanks
 --------------
